@@ -1,0 +1,36 @@
+<div class="login">
+    <h4 class="inline mb-3" *ngIf="loginMode">
+        Login
+    </h4>
+    <h4 class="inline mb-3" *ngIf="!loginMode">
+        Register
+    </h4>
+    <form class="px-5" [formGroup]="loginForm">
+        <div class="form-group mb-3" *ngIf="!loginMode">
+            <label for="firstname" class="form-label">First Name</label>
+            <input type="name" class="form-control" id="firstname" placeholder="Enter your firstname">
+        </div>
+        <div class="form-group mb-3" *ngIf="!loginMode">
+            <label for="lastname" class="form-label">Last Name</label>
+            <input type="name" class="form-control" id="lastname" placeholder="Enter your lastname">
+        </div>
+        <div class=" form-group mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" placeholder="Enter your email address" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Enter password">
+        </div>
+        <div class="form-group mb-3" *ngIf="!loginMode">
+            <label for="password1" class="form-label">Re-Enter Password</label>
+            <input type="password" class="form-control" id="password1" placeholder="Enter password again">
+        </div>
+        <button type="submit" class="btn btn-dark" style="margin-left: 15%">Submit</button>
+        <button type="submit" class="btn btn-dark" style="margin-left: 34%" (click)="changeMode()" *ngIf="!loginMode">Back to Login Page</button>
+        <a [routerLink]="" (click)="changeMode()" class="register" *ngIf="loginMode"> Not Registered? Sign-up here </a>
+    </form>
+</div>
+
+
