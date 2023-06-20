@@ -57,7 +57,7 @@
             <input type="password" class="form-control" id="password1" placeholder="Enter password again" minlength="6"
                 formControlName="password1" [ngClass]="{ 'is-invalid': submitted && f['password1'].errors }" required />
             <div *ngIf="submitted && f['password1'].errors" class="invalid-feedback">
-                <div *ngif="f['password1'].errors['required']">
+                <div *ngIf="f['password1'].errors['required']">
                     Confirm Password is required
                 </div>
                 <div *ngIf="f['password1']errors['confirmPasswordValidator']">
