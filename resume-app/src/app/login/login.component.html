@@ -8,29 +8,67 @@
     <form class="px-5" [formGroup]="loginForm">
         <div class="form-group mb-3" *ngIf="!loginMode">
             <label for="firstname" class="form-label">First Name</label>
-            <input type="name" class="form-control" id="firstname" placeholder="Enter your firstname">
+            <input type="name" class="form-control" id="firstname" placeholder="Enter your firstname"
+                formControlName="firstname" [ngClass]="{ 'is-invalid': submitted && f['firstname'].errors }" required />
+            <div *ngIf="submitted && f['firstname'].errors" class="invalid-feedback">
+                <div *ngIf="f['firstname'].errors['required']">Firstname is required</div>
+            </div>
         </div>
         <div class="form-group mb-3" *ngIf="!loginMode">
             <label for="lastname" class="form-label">Last Name</label>
-            <input type="name" class="form-control" id="lastname" placeholder="Enter your lastname">
+            <input type="name" class="form-control" id="lastname" placeholder="Enter your lastname"
+                formControlName="lastname" [ngClass]="{ 'is-invalid': submitted && f['lastname'].errors }" required />
+            <div *ngIf="submitted && f['lastname'].errors" class="invalid-feedback">
+                <div *ngIf="f['lastname'].errors['required']">Lastname is required</div>
+            </div>
         </div>
         <div class=" form-group mb-3">
-          <label for="email" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter your email address" aria-describedby="emailHelp">
-          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email address"
+                formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+                aria-describedby="emailHelp" required />
+            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                <div *ngIf="f['email'].errors['required']">Email is required</div>
+                <div *ngIf="f['email'].errors['email']">Email must be a valid email address</div>
+            </div>
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
+
         <div class="form-group mb-3">
-          <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Enter password">
+            <label for="password" class="form-label">Password</label>
+            <div class="input-group">
+                <input type="{{passwordType}}" class="form-control" id="password" placeholder="Enter password"
+                    formControlName="password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }"
+                    minlength="6" required />
+                <span class="input-group-text">
+                    <i class="bi password-eye"
+                        [ngClass]="{'bi-eye': isPasswordHidden, 'bi-eye-slash': !isPasswordHidden}"
+                        (click)="togglePasswordVisibility()"></i>
+                </span>
+
+                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <div *ngIf="f['password'].errors['required']">Password is required</div>
+                    <div *ngIf="f['password'].errors['minlength']">Password must be 6 characters</div>
+                </div>
+            </div>
         </div>
         <div class="form-group mb-3" *ngIf="!loginMode">
             <label for="password1" class="form-label">Re-Enter Password</label>
-            <input type="password" class="form-control" id="password1" placeholder="Enter password again">
+            <input type="password" class="form-control" id="password1" placeholder="Enter password again" minlength="6"
+                formControlName="password1" [ngClass]="{ 'is-invalid': submitted && f['password1'].errors }" required />
+            <div *ngIf="submitted && f['password1'].errors" class="invalid-feedback">
+                <div *ngif="f['password1'].errors['required']">
+                    Confirm Password is required
+                </div>
+                <div *ngIf="f['password1']errors['confirmPasswordValidator']">
+                    Passsword and Confirm Password didn't match.
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-dark" style="margin-left: 15%">Submit</button>
-        <button type="submit" class="btn btn-dark" style="margin-left: 34%" (click)="changeMode()" *ngIf="!loginMode">Back to Login Page</button>
-        <a [routerLink]="" (click)="changeMode()" class="register" *ngIf="loginMode"> Not Registered? Sign-up here </a>
+        <button type="submit" class="btn btn-dark" style="margin-left: 15%" (click)="process()">Submit</button>
+        <button type="submit" class="btn btn-dark" style="margin-left: 34%" (click)="changeMode()"
+            *ngIf="!loginMode">Back to Login Page</button>
+        <a [routerLink]="" (click)="changeMode()" class="register" *ngIf="loginMode"> Not Registered? Sign-up here
+        </a>
     </form>
 </div>
-
-
