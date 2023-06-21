@@ -6,9 +6,6 @@ from flask import Flask, request, jsonify
 from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, jwt_required
 import datetime
 import hashlib
-import requests
-import urllib
-import os
 from dotenv import load_dotenv
 from flask_cors import CORS
 
