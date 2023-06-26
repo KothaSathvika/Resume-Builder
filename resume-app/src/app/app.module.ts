@@ -7,13 +7,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { BuildComponent } from './build/build.component';
+import { AboutComponent } from './about/about.component';
+
+
+
+
+import "bootstrap"
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    BuildComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
